@@ -9,9 +9,9 @@
 		<artifactId>getinfo</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>getinfo_client</artifactId>
+	<artifactId>getinfo_admin</artifactId>
 	<packaging>war</packaging>
-	<name>getinfo_client Maven Webapp</name>
+	<name>getinfo_admin Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<dependency>
@@ -27,7 +27,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>getinfo_client</finalName>
+		<finalName>getinfo_admin</finalName>
 		<pluginManagement>
 			<plugins>
 				<plugin>
