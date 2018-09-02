@@ -6,7 +6,7 @@
 	<definition name="base.definition" template="/WEB-INF/views/defaultTiles/layout/defaultLayout.jsp">
 		<put-attribute name="title" value="" />
 		<put-attribute name="header" value="/WEB-INF/views/defaultTiles/template/defaultHeader.jsp" />
-		<put-attribute name="menu" value="/WEB-INF/views/tiles/defaultTiles/template/defaultNavbar.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/views/defaultTiles/template/defaultNavbar.jsp" />
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/defaultTiles/template/defaultFooter.jsp" />
 	</definition>
@@ -14,5 +14,9 @@
 	<definition name="home" extends="base.definition">
 		<put-attribute name="title" value="welcome" />
 		<put-attribute name="body" value="/WEB-INF/views/defaultTiles/pages/home.jsp" />
+	</definition>
+	<definition name="userhome" extends="base.definition">
+		<put-attribute name="title" value="welcome" />
+		<put-attribute name="body" value="/WEB-INF/views/defaultTiles/pages/userhome.jsp" />
 	</definition>
 </tiles-definitions>  
