@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.mchange.util.Base64Encoder;
+import sun.misc.*;
 public class ImageUploadUtils {
 
     public static String getImage(MultipartFile upload)
@@ -42,11 +42,11 @@ public class ImageUploadUtils {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
 
         try {
-            ImageIO.write(image, type, bos);
+        	ImageIO.write(image, type, bos);
             byte[] imageBytes = bos.toByteArray();
-         //  Base64Encoder encoder = new Base64Encoder();
-            imageString=Base64.getEncoder().encodeToString(imageBytes);
-          //  imageString = encoder.encode(imageBytes);
+
+            BASE64Encoder encoder = new BASE64Encoder();
+            imageString = encoder.encode(imageBytes);
 
             bos.close();
         } catch (IOException e) {

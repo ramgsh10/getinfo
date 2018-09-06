@@ -1,5 +1,6 @@
 package com.getinfo.controller;
 
+import java.io.IOException;
 import java.util.Base64;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.getinfo.model.SignInModel;
 import com.getinfo.model.SignUpModel;
 import com.getinfo.service.LoginService;
-import com.getinfo.util.ImageUploadUtils;
 
 @Controller
 public class LoginController 
@@ -45,17 +45,21 @@ public class LoginController
 	public ModelAndView signUp(@ModelAttribute("signup") SignUpModel signUpData,BindingResult binding,@RequestParam MultipartFile file,HttpServletRequest re)
 	{
 		HttpSession s=re.getSession();
-		String convertimage=ImageUploadUtils.getImage(file);
-		signUpData.setFile(convertimage);
-		int result=loginService.signUp(signUpData);
+		byte[] b = null;
+		try 
+		{
+				b = file.getBytes();
+		} 
+		catch (IOException e) 
+		{
+      			e.printStackTrace();
+		}		
+		signUpData.setFile(b);
+		int id=loginService.signUp(signUpData);
 		ModelAndView mav=new ModelAndView("userhome");
-		
-		byte[] encodeBase64=Base64.getEncoder().encode(signUpData.getFile().getBytes());
+		byte[] encodeBase64 = Base64.getEncoder().encode(signUpData.getFile());
 		String base64Encoded = new String(encodeBase64);
-		
-		s.setAttribute("pic",base64Encoded );
-		
-		System.out.println("................................................................"+result);
+		s.setAttribute("pic", base64Encoded);
 		return mav;
 	}
 	

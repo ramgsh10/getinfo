@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -22,8 +23,8 @@ import com.mchange.v2.c3p0.DriverManagerDataSource;
 @PropertySource({"classpath:hibernate.properties"})
 public class HibernateConfig 
 {
-	/*@Autowired
-    private Environment environment;*/
+	@Autowired
+    private Environment environment;
  
 	 @Bean
 	 public DataSource getDataSource()
@@ -32,7 +33,7 @@ public class HibernateConfig
 	        dataSource.setDriverClass("com.mysql.jdbc.Driver");
 	        dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/virtual");
 	        dataSource.setUser("root");
-	        dataSource.setPassword("root");
+	        dataSource.setPassword(environment.getProperty("mysql.password"));
 	        return dataSource;
 	  }
 
@@ -49,7 +50,7 @@ public class HibernateConfig
     {
         Properties properties = new Properties();
         properties.put("hibernate.dialect","org.hibernate.dialect.MySQL5Dialect");
-        properties.put("hibernate.hbm2ddl.auto","create");
+        properties.put("hibernate.hbm2ddl.auto","update");
         properties.put("hibernate.show_sql", "true");
         properties.put("hibernate.format_sql", "true");
         return properties;        

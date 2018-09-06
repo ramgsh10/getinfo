@@ -11,15 +11,8 @@
 </head>
 <body>
 	<div id="profile-pic">
-
-		<h1>hiii no</h1>
 		<div class="imageHolder">
-
-			<a href="/pim/viewPhotograph/empNumber/110" class="tiptip"> <img
-				alt="Employee Photo" src="data:image/PNG;base64,${pic}" border="0"
-				id="empPic" width="190" height="200">
-			</a>
-
+			<img alt="" src="data:image/png;base64,${pic}" width="200px" height="200px">
 		</div>
 </body>
 </html>
